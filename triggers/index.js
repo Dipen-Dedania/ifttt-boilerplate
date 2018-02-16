@@ -8,6 +8,6 @@ router.use(function(req, res, next) {
     next();
 });
 
-router.get('/my_trigger', require('./my-trigger'));
+router.use('/my_trigger', require('./my-trigger'));
 
 module.exports = router;

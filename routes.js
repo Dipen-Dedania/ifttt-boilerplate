@@ -3,7 +3,7 @@ var express    = require('express');
 var router = express.Router();
 
 //Add your key here
-var iftttKey = require('config').iftttKey;
+var iftttKey = require('./config').iftttKey;
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
@@ -35,5 +35,19 @@ router.get('/status', function(req, res) {
     }
 });
 
+
+router.post('/test/setup', function(req, res) {
+    var serviceKey = req.get("IFTTT-Service-Key");
+    var channelKey = req.get("IFTTT-Channel-Key");
+    console.log("Status check - serviceKey", serviceKey);
+    console.log("setup - body", req.body);
+    if(serviceKey === iftttKey) {
+        // res.setHeader('IFTTT-Service-Key', iftttKey);
+        res.status(200).json({ "data": { "status" : "success"} });
+    }
+    else {
+        res.sendStatus(401);
+    }
+});
 
 module.exports = router;
