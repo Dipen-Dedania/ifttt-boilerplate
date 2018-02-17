@@ -35,33 +35,12 @@ router.get('/', function(req, res) {
 
 // Send status 200 - to notify IFTTT
 router.get('/status', function(req, res) {
-    // var serviceKey = req.get("IFTTT-Service-Key");
-    // var channelKey = req.get("IFTTT-Channel-Key");
-    // console.log("Status check - serviceKey", serviceKey);
-    // console.log("Status check - channelKey", channelKey);
-    // if(serviceKey === iftttKey) {
-    //     // res.setHeader('IFTTT-Service-Key', iftttKey);
-    //     res.sendStatus(200);
-    // }
-    // else {
-    //     res.sendStatus(401);
-    // }
     res.sendStatus(200);
 });
 
-
 router.post('/test/setup', function(req, res) {
-    var serviceKey = req.get("IFTTT-Service-Key");
-    var channelKey = req.get("IFTTT-Channel-Key");
-    console.log("Status check - serviceKey", serviceKey);
     console.log("setup - body", req.body);
-    if(serviceKey === iftttKey) {
-        // res.setHeader('IFTTT-Service-Key', iftttKey);
-        res.status(200).json({ "data": { "status" : "success"} });
-    }
-    else {
-        res.sendStatus(401);
-    }
+    res.status(200).json({ "data": { "status" : "success"} });
 });
 
 module.exports = router;

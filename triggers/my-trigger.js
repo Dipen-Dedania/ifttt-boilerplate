@@ -10,18 +10,25 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     console.log("setup - body", req.body);
     const cars = data.cars;
+    var limit = (req.body.limit !== undefined && req.body.limit !== null && req.body.limit !== '')
+        ? req.body.limit : 50; // IF limit is present, just send that much
     var myData = [];
     // Add extra fields
-    for(var i=0; i< 3; i++) {
+    for(var i=0; i< Math.min(limit, 3); i++) {
         var myObj = cars[i];
-        var timestamp = Date.now();
-        Object.defineProperty(myObj, 'id', {value: cars[i].id});
-        Object.defineProperty(myObj, 'key', {value: cars[i].id});
-        // Object.defineProperty(myObj, 'timestamp', {value: timestamp});
+        var timestamp = Math.round(Date.now() /1000); // To get seconds
+        var meta = {
+            "id" : cars[i].id,
+            "key" : cars[i].id,
+            "timestamp" : timestamp
+        };
+        var created_at = new Date();
+        myObj['meta'] = meta;
+        myObj['created_at'] = created_at.toISOString();
         myData.push(myObj);
-        console.log("myObj.meta_property", myObj.key);
     }
-    res.status(200).json({ "data" : myData });
+    // reverse to send data ordered by timestamp descending
+    res.status(200).json({ "data" : myData.reverse() });
 });
 
 module.exports = router;
