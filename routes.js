@@ -9,7 +9,20 @@ var iftttKey = require('./config').iftttKey;
 router.use(function(req, res, next) {
     // do logging
     console.log('Something is happening.');
-    next();
+
+    // Add service key validation
+    var serviceKey = req.get("IFTTT-Service-Key");
+    // var channelKey = req.get("IFTTT-Channel-Key");
+    console.log("Status check - serviceKey", serviceKey);
+    if(serviceKey === iftttKey) {
+        next();
+    }
+    else {
+        const errors = [{
+            "message": "Invalid channel key!"
+        }];
+        res.status(401).json({ errors });
+    }
 });
 
 router.use('/triggers', require('./triggers') );
@@ -22,17 +35,18 @@ router.get('/', function(req, res) {
 
 // Send status 200 - to notify IFTTT
 router.get('/status', function(req, res) {
-    var serviceKey = req.get("IFTTT-Service-Key");
-    var channelKey = req.get("IFTTT-Channel-Key");
-    console.log("Status check - serviceKey", serviceKey);
-    console.log("Status check - channelKey", channelKey);
-    if(serviceKey === iftttKey) {
-        // res.setHeader('IFTTT-Service-Key', iftttKey);
-        res.sendStatus(200);
-    }
-    else {
-        res.sendStatus(401);
-    }
+    // var serviceKey = req.get("IFTTT-Service-Key");
+    // var channelKey = req.get("IFTTT-Channel-Key");
+    // console.log("Status check - serviceKey", serviceKey);
+    // console.log("Status check - channelKey", channelKey);
+    // if(serviceKey === iftttKey) {
+    //     // res.setHeader('IFTTT-Service-Key', iftttKey);
+    //     res.sendStatus(200);
+    // }
+    // else {
+    //     res.sendStatus(401);
+    // }
+    res.sendStatus(200);
 });
 
 

@@ -10,13 +10,18 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     console.log("setup - body", req.body);
     const cars = data.cars;
+    var myData = [];
     // Add extra fields
-    for(var i=0; i< cars.length; i++) {
-        Object.defineProperty(cars[i], 'id', {value: cars[i].id});
-        Object.defineProperty(cars[i], 'key', {value: cars[i].id});
-        Object.defineProperty(cars[i], 'timestamp', {value: Date.now()});
+    for(var i=0; i< 3; i++) {
+        var myObj = cars[i];
+        var timestamp = Date.now();
+        Object.defineProperty(myObj, 'id', {value: cars[i].id});
+        Object.defineProperty(myObj, 'key', {value: cars[i].id});
+        // Object.defineProperty(myObj, 'timestamp', {value: timestamp});
+        myData.push(myObj);
+        console.log("myObj.meta_property", myObj.key);
     }
-    res.status(200).json({ "data" : cars });
+    res.status(200).json({ "data" : myData });
 });
 
 module.exports = router;
