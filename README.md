@@ -9,7 +9,7 @@ So here's one with **NodeJS** & Express framework.
 
 ## Setup
 
-* Just for this repo. Clone it into your local PC and run below commands.
+* Just fork this repo. Clone it into your local PC and run below commands.
 ```
 npm install
 ```
