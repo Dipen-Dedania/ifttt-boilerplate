@@ -16,7 +16,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "googleapis": "^26.0.1",
+    "googleapis": "^49.0.0",
     "morgan": "^1.9.1",
     "snyk": "^1.161.1"
   },
