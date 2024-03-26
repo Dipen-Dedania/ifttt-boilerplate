@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "express": "^4.19.2",
     "googleapis": "^26.0.1",
     "morgan": "^1.9.1",
     "snyk": "^1.161.1"
