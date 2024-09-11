@@ -14,8 +14,8 @@
   "author": "Dipen",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.20.3",
+    "express": "^4.20.0",
     "googleapis": "^26.0.1",
     "morgan": "^1.9.1",
     "snyk": "^1.161.1"
